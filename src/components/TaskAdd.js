@@ -21,7 +21,7 @@ export const TaskAdd = ({ taskList, setTaskList, task, setTask }) => {
       };
       setTaskList([...taskList, newTask]);
     }
-    e.target.task.value = "";
+    setTask({});
   };
 
   return (
@@ -33,10 +33,10 @@ export const TaskAdd = ({ taskList, setTaskList, task, setTask }) => {
           autoComplete="off"
           placeholder="add task"
           maxLength="25"
-          value={task.name}
+          value={task.name || ""}
           onChange={(e) => setTask({ ...task, name: e.target.value })}
         />
-        <button type="submit">Add</button>
+        <button type="submit">{task.id ? "Update" : "Add"}</button>
       </form>
     </section>
   );
