@@ -1,4 +1,14 @@
-export const ShowTask = ({ taskList, setTaskList }) => {
+export const ShowTask = ({ taskList, setTaskList, task, setTask }) => {
+  const handleEdit = (id) => {
+    const selectedTask = taskList.find((task) => task.id === id);
+    setTask(selectedTask);
+  };
+
+  const handleDelete = (id) => {
+    const newTaskList = taskList.filter((task) => task.id !== id);
+    setTaskList(newTaskList);
+  };
+
   return (
     <section className="showTask">
       <div className="head">
@@ -17,8 +27,14 @@ export const ShowTask = ({ taskList, setTaskList }) => {
               <span className="name">{task.name}</span>
               <span className="time">{task.time}</span>
             </p>
-            <i className="bi bi-pencil-square"></i>
-            <i className="bi bi-trash"></i>
+            <i
+              onClick={() => handleEdit(task.id)}
+              className="bi bi-pencil-square"
+            ></i>
+            <i
+              onClick={() => handleDelete(task.id)}
+              className="bi bi-trash"
+            ></i>
           </li>
         ))}
       </ul>
